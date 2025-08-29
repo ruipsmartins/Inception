@@ -1,2 +1,1 @@
-# Inception
-Inception project
+is part of the **42 curriculum**.   The goal is to build a small infrastructure using **Docker Compose**:   - **Nginx** with TLS/SSL - **WordPress** + **PHP-FPM** - **MariaDB** - Containers are built **from scratch** (with Dockerfiles), no pre-built images.

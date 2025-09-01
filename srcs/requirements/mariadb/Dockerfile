@@ -11,7 +11,7 @@ RUN apt-get update \
 
 # Ajuste para aceitar ligações na rede Docker (0.0.0.0)
 # Em alguns builds, o default é 127.0.0.1; garantimos 0.0.0.0.
-RUN sed -i 's/^\s*bind-address\s*=.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf \
+RUN sed -i 's/^\s*bind-address\s*=.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 # || echo -e "[mysqld]\nbind-address=0.0.0.0" > /etc/mysql/mariadb.conf.d/99-inception.cnf
 
 # Copiar o entrypoint e torná-lo executável

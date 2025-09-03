@@ -25,7 +25,7 @@ wpresslogs:
 	@$(COMPOSE) logs -f wordpress
 
 wpressexec:
-docker exec -it --user root wordpress bash
+	docker exec -it --user root wordpress bash
 
 re: down up
 

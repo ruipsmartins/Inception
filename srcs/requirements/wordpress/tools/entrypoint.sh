@@ -1,5 +1,5 @@
 #!/bin/sh
-set -euo pipefail
+set -eu
 
 # ── 1) Ler secrets (passwords) ────────────────────────────────────────────────
 DB_USER_PASSWORD="$(cat /run/secrets/db_user_password)"
@@ -79,5 +79,6 @@ if [ ! -f "wp-config.php" ]; then
 fi
 
 # ── 6) Arrancar o php-fpm em foreground (boa prática PID 1) ──────────────────
-echo "▶️  A iniciar php-fpm (foreground)..."
-exec php-fpm -F
+PHP_DIR="$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')"
+echo "▶️  A iniciar /usr/sbin/php-fpm${PHP_DIR} (foreground)..."
+exec "/usr/sbin/php-fpm${PHP_DIR}" -F

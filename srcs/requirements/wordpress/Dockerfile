@@ -12,8 +12,9 @@ RUN apt-get update \
 
 # Ajustar o PHP-FPM para escutar em TCP 0.0.0.0:9000 (em vez de unix socket),
 # para o Nginx (noutro container) conseguir ligar via rede docker.
-RUN PHP_DIR="$(php -r 'echo PHP_MAJOR_VERSION.\".\".PHP_MINOR_VERSION;')" \
- && sed -ri 's|^listen = .*|listen = 0.0.0.0:9000|' "/etc/php/${PHP_DIR}/fpm/pool.d/www.conf"
+# Edita o www.conf, qualquer que seja a versão do PHP (7.x/8.x)
+RUN sed -ri 's|^listen = .*|listen = 0.0.0.0:9000|' /etc/php/*/fpm/pool.d/www.conf
+
 
 # Instalar wp-cli (ferramenta de linha de comandos para gerir WordPress)
 RUN curl -fsSL -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \

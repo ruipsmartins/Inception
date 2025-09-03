@@ -18,6 +18,12 @@ marialogs:
 marialogin:
 	docker exec -it mariadb mariadb -u wpuser -p
 
+wpressup:
+	@$(COMPOSE) up -d --build wordpress
+
+wpresslogs:
+	@$(COMPOSE) logs -f wordpress
+
 re: down up
 
 ps:

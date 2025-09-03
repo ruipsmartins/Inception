@@ -20,6 +20,7 @@ services:
       - .env
     secrets:
       - db_user_password
+      - wp_admin_password
     volumes:
       - ${WP_VOLUME}:/var/www/html
     networks:
@@ -51,3 +52,5 @@ secrets:
     file: ./secrets/db_root_password.txt
   db_user_password:
     file: ./secrets/db_user_password.txt
+  wp_admin_password:
+    file: ./secrets/wp_admin_password.txt

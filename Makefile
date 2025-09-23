@@ -20,7 +20,6 @@ marialogin:
 
 wpressup:
 	@$(COMPOSE) up -d --build wordpress
-docker exec -it --user root wordpress bash
 
 wpresslogs:
 	@$(COMPOSE) logs -f wordpress

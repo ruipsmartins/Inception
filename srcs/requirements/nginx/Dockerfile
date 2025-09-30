@@ -1,4 +1,4 @@
-# Base: penúltima versão estável do Debian
+# penúltima versão estável do debian
 FROM debian:12
 
 # Evitar prompts do apt

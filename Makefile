@@ -35,11 +35,7 @@ ps:
 logs:
 	@$(COMPOSE) logs -f
 
-clean: down
-	@docker volume rm -f $$(docker volume ls -q | grep $(NAME)_ || true)
-	@docker network rm -f $$(docker network ls -q | grep $(NAME)_ || true)
-
-fclean: clean
+fclean: down
 	@docker system prune -af --volumes
 
 .PHONY: all up down re ps logs clean fclean

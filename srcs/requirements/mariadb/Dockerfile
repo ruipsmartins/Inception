@@ -1,8 +1,8 @@
-# Debian penúltimo estável para cumprir o subject
+# penúltima versão estável do debian
 FROM debian:12
 
 # Evita prompts do apt
-#ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Instalar MariaDB server (sem extras) e limpar cache do apt
 RUN apt-get update \

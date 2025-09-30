@@ -1,7 +1,7 @@
-# Usamos a penúltima versão estável: Debian 11 (bullseye/slim)
+# penúltima versão estável do debian
 FROM debian:12
 
-#ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # PHP-FPM + extensões necessárias ao WordPress + cliente mariadb + utilitários
 RUN apt-get update \
@@ -14,7 +14,6 @@ RUN apt-get update \
 # para o Nginx (noutro container) conseguir ligar via rede docker.
 # Edita o www.conf, qualquer que seja a versão do PHP (7.x/8.x)
 RUN sed -ri 's|^listen = .*|listen = 0.0.0.0:9000|' /etc/php/*/fpm/pool.d/www.conf
-
 
 # Instalar wp-cli (ferramenta de linha de comandos para gerir WordPress)
 RUN curl -fsSL -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \

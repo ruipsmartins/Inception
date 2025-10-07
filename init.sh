@@ -3,7 +3,6 @@
 # Atualizar
 sudo apt update && sudo apt -y upgrade
 
-sudo apt install openssh-server -y
 
 # Instalar Docker Engine + plugin docker compose (v2)
 sudo apt -y install ca-certificates curl gnupg lsb-release
@@ -24,3 +23,8 @@ sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 # Usar Docker sem sudo (opcional)
 sudo usermod -aG docker "$USER"
 # (faz logout/login depois disto)
+sudo apt install openssh-server -y
+
+sudo systemctl start ssh
+sudo systemctl enable ssh 
+sudo systemctl status ssh 

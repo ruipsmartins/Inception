@@ -31,5 +31,5 @@ sed -ri "s|server_name _;|server_name ${DOMAIN};|" "$CONF"
 
 # validar e arrancar
 nginx -t
-echo "🚀 Nginx a ouvir em 443 (TLS 1.2/1.3 only) para ${DOMAIN}"
+echo "Nginx a ouvir em 443 (TLS 1.2/1.3 only) para ${DOMAIN}"
 exec nginx -g 'daemon off;'

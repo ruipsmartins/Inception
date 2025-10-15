@@ -24,11 +24,11 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 # Garantir que o webroot existe (será partilhado com o WordPress via volume)
 RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www
 
-# Documenta a porta usada (mapeamento é feito no docker-compose)
+# documenta a porta usada (mapeamento é feito no docker-compose)
 EXPOSE 443
 
-# Permite shutdown limpo do Nginx em containers
+# permite shutdown limpo do Nginx em containers
 STOPSIGNAL SIGQUIT
 
-# Importante: corre em foreground (PID 1) no script de entrypoint (sem hacks tipo tail/sleep)
+# corre em foreground (PID 1) no script de entrypoint (sem tail/sleep)
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

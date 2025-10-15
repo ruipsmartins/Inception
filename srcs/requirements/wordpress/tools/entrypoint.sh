@@ -4,6 +4,7 @@ set -e
 # Ler passwords dos secrets
 DB_PASS="$(cat /run/secrets/db_user_password)"
 ADMIN_PASS="$(cat /run/secrets/wp_admin_password)"
+WP_USER_PASS="$(cat /run/secrets/wp_user_password)"
 
 cd /var/www/html
 
@@ -29,6 +30,7 @@ if [ ! -f wp-config.php ]; then
     --allow-root
 
   wp user create "$WP_USER_NAME" "$WP_USER_EMAIL" --role=author --allow-root
+  wp user update "$WP_USER_NAME" --user_pass="$WP_USER_PASS" --allow-root
 fi
 
 # Iniciar PHP-FPM

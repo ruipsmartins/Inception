@@ -37,5 +37,6 @@ logs:
 
 fclean: down
 	@docker system prune -af --volumes
+	sudo rm -rf ../data
 
 .PHONY: all up down re ps logs clean fclean

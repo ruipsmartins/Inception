@@ -21,6 +21,7 @@ services:
     secrets:
       - db_user_password
       - wp_admin_password
+      - wp_user_password
     volumes:
       - ${WP_VOLUME}:/var/www/html
     networks:

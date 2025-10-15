@@ -9,7 +9,7 @@ cd /var/www/html
 
 # Instalar WordPress se ainda não existir
 if [ ! -f wp-config.php ]; then
-  echo "📦 A instalar WordPress..."
+  echo "A instalar WordPress..."
 
   wp core download --allow-root
   wp config create \
@@ -33,5 +33,5 @@ fi
 
 # Iniciar PHP-FPM
 PHP_VER="$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')"
-echo "▶️ A iniciar php-fpm${PHP_VER}..."
+echo "A iniciar php-fpm${PHP_VER}..."
 exec "/usr/sbin/php-fpm${PHP_VER}" -F

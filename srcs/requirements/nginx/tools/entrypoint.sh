@@ -18,7 +18,7 @@ KEY="$SSL_DIR/server.key"
 
 # gerar certificado self-signed se faltar (com SAN = domínio)
 if [ ! -f "$CRT" ] || [ ! -f "$KEY" ]; then
-  echo "🔐 A gerar certificado para ${DOMAIN}..."
+  echo "A gerar certificado para ${DOMAIN}..."
   openssl req -x509 -nodes -newkey rsa:4096 -days 365 \
     -keyout "$KEY" -out "$CRT" \
     -subj "/CN=${DOMAIN}" \

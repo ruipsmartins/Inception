@@ -18,7 +18,7 @@ chown -R mysql:mysql "$DATADIR" "$RUNDIR"
 
 # primeira inicialização?
 if [ ! -d "$DATADIR/mysql" ]; then
-  echo "📦 A inicializar dados do MariaDB..."
+  echo "A inicializar dados do MariaDB..."
   mariadb-install-db --user=mysql --datadir="$DATADIR" --skip-test-db > /dev/null
 
   # arrancar mysqld temporário (sem rede) para correr SQL de bootstrap
@@ -43,5 +43,5 @@ SQL
   kill "$pid"; wait "$pid"
 fi
 
-echo "▶️  MariaDB a arrancar (foreground)..."
+# arrancar o mysqld normal
 exec mysqld --user=mysql --datadir="$DATADIR" --console

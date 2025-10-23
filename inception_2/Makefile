@@ -4,13 +4,16 @@ COMPOSE = docker compose -f srcs/docker-compose.yml
 all: up
 
 up:
+	$(MAKE) pastas
+	@echo "A iniciar containers..."
+	@$(COMPOSE) up -d --build
+
+pastas:
 	@echo "Criando diretórios necessários..."
 	mkdir -p /home/ruidos-s/data/db
 	mkdir -p /home/ruidos-s/data/wp
 	sudo chown -R $(USER):$(USER) /home/ruidos-s/data/
 	chmod -R 755 /home/ruidos-s/data/
-	@echo "A iniciar containers..."
-	@$(COMPOSE) up -d --build
 
 down:
 	@$(COMPOSE) down

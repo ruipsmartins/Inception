@@ -4,6 +4,8 @@ COMPOSE = docker compose -f srcs/docker-compose.yml
 all: up
 
 up:
+	mkdir -p /home/ruidos-s/data/db
+	mkdir -p /home/ruidos-s/data/wp
 	@$(COMPOSE) up -d --build
 
 down:
@@ -37,6 +39,6 @@ logs:
 
 fclean: down
 	@docker system prune -af --volumes
-	sudo rm -rf ../data
+	sudo rm -rf /home/ruidos-s/data/
 
 .PHONY: all up down re ps logs clean fclean

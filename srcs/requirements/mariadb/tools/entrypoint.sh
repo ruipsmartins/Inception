@@ -17,7 +17,7 @@ mkdir -p "$DATADIR" "$RUNDIR"
 chown -R mysql:mysql "$DATADIR" "$RUNDIR"
 
 # primeira inicialização?
-if [ ! -d "$DATADIR/mysql" ]; then
+if [ ! -d "/var/lib/mysql/wordpress/" ]; then
   echo "A inicializar dados do MariaDB..."
   mariadb-install-db --user=mysql --datadir="$DATADIR" --skip-test-db > /dev/null
 

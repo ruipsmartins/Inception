@@ -4,11 +4,11 @@ set -e
 CONF="/etc/nginx/conf.d/default.conf"
 SSL_DIR="/etc/nginx/ssl"
 
-# domínio a usar (vem do .env)
+# domínio a usar (vem do .env) — tolerante por omissão
 if [ -z "${DOMAIN:-}" ] && [ -n "${LOGIN:-}" ]; then
   DOMAIN="${LOGIN}.42.fr"
 fi
-: "${DOMAIN:?Falta DOMAIN no .env (ex.: DOMAIN=ruidos-s.42.fr)}"
+DOMAIN="${DOMAIN:-localhost}"
 
 mkdir -p "$SSL_DIR" /var/www/html
 chown -R www-data:www-data /var/www

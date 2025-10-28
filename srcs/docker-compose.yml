@@ -8,7 +8,7 @@ services:
       - db_root_password
       - db_user_password
     volumes:
-      - ${DB_VOLUME}:/var/lib/mysql
+      - db_data:/var/lib/mysql
     networks:
       - inception_net
     restart: always
@@ -23,7 +23,7 @@ services:
       - wp_admin_password
       - wp_user_password
     volumes:
-      - ${WP_VOLUME}:/var/www/html
+      - wp_data:/var/www/html
     networks:
       - inception_net
     depends_on:
@@ -38,7 +38,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ${WP_VOLUME}:/var/www/html
+      - wp_data:/var/www/html
     networks:
       - inception_net
     depends_on:
@@ -47,6 +47,20 @@ services:
 
 networks:
   inception_net:
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ruidos-s/data/mariadb
+  wp_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/ruidos-s/data/wordpress
 
 secrets:
   db_root_password:

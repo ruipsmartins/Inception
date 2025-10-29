@@ -1,5 +1,6 @@
 networks:
   inception_net:
+    driver: bridge
 
 volumes:
   db_data:

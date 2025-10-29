@@ -1,6 +1,7 @@
 # penúltima versão estável do debian
 FROM debian:12
 
+# Evita prompts do apt
 ENV DEBIAN_FRONTEND=noninteractive
 
 # PHP-FPM + extensões necessárias ao WordPress + cliente mariadb + utilitários
@@ -10,9 +11,8 @@ RUN apt-get update \
       mariadb-client curl ca-certificates tar less \
  && rm -rf /var/lib/apt/lists/*
 
-# Ajustar o PHP-FPM para escutar em TCP 0.0.0.0:9000 (em vez de unix socket),
-# para o Nginx (noutro container) conseguir ligar via rede docker.
-# Edita o www.conf, qualquer que seja a versão do PHP (7.x/8.x)
+# Ajuste do PHP-FPM para ouvir em todas as interfaces (0.0.0.0)
+# Por defeito, o PHP-FPM ouve só em localhost (127.0.0.1)
 RUN sed -ri 's|^listen = .*|listen = 0.0.0.0:9000|' /etc/php/*/fpm/pool.d/www.conf
 
 # Instalar wp-cli (ferramenta de linha de comandos para gerir WordPress)
@@ -24,12 +24,13 @@ RUN curl -fsSL -o /usr/local/bin/wp https://raw.githubusercontent.com/wp-cli/bui
 RUN mkdir -p /var/www/html \
  && chown -R www-data:www-data /var/www
 
-# Copiamos o entrypoint (vamos criá-lo a seguir)
+# Copiar o entrypoint e torná-lo executável
 COPY ./tools/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+# Definir a pasta de trabalho
 WORKDIR /var/www/html
 EXPOSE 9000
 
-# O entrypoint vai tratar da instalação/configuração do WP e depois executar o php-fpm em foreground
+# O entrypoint vai tratar da inicialização do WordPress e do arranque do PHP-FPM
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
